@@ -1,6 +1,5 @@
 export {
-  getOrCreateVault,
-  getOrCreateVaultTransfer,
+  getOrCreateVaultAsAsset,
 } from "./yVault/yVault";
 
 export {

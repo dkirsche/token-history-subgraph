@@ -1,5 +1,5 @@
 {
-  "name": "subgraph-y",
+  "name": "asset-price-history",
   "license": "UNLICENSED",
   "private": true,
   "workspaces": {
@@ -14,10 +14,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dkirsche/yearn-vault-transfers",
-    "create-local": "graph create --node http://localhost:8020/ dkirsche/yearn-vault-transfers-dev",
-    "remove-local": "graph remove --node http://localhost:8020/ dkirsche/yearn-vault-transfers-dev",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dkirsche/yearn-vault-transfers-dev"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dkirsche/asset-price-history",
+    "create-local": "graph create --node http://localhost:8020/ dkirsche/asset-price-history",
+    "remove-local": "graph remove --node http://localhost:8020/ dkirsche/asset-price-history",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dkirsche/asset-price-history"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",
