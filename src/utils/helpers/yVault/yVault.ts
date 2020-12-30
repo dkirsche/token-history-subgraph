@@ -24,13 +24,13 @@ export function getOrCreateVaultAsAsset(vaultAddress: Address, timestamp: BigInt
   let transfer = PriceHistoryDaily.load(priceHistoryID);
   if (transfer == null) {
     transfer = new PriceHistoryDaily(priceHistoryID);
-  }
-  transfer.asset = vault.id;
-  transfer.token = token.id;
-  transfer.pricePerShare = vaultContract.getPricePerFullShare();
-  transfer.timestamp = timestamp;
+    transfer.asset = vault.id;
+    transfer.token = token.id;
+    transfer.pricePerShare = vaultContract.getPricePerFullShare();
+    transfer.timestamp = timestamp;
 
-  transfer.save();
+    transfer.save();
+  }
   return transfer as PriceHistoryDaily;
 }
 
