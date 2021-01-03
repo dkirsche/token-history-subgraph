@@ -1,1 +1,2 @@
-export { handleTransfer } from "./mappings/yVault";
+export { handleYEarnTransfer } from "./mappings/yVault";
+export { handleCurveTransfer } from "./mappings/yVault";

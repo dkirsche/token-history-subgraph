@@ -8,28 +8,17 @@ type Asset @entity {
   priceHistoryDaily: [PriceHistoryDaily!]! @derivedFrom(field: "asset")
 }
 
-type Token @entity {
-  id: ID!
-
-  address: Bytes!
-
-  decimals: Int!
-
-  name: String!
-
-  symbol: String!
-}
 
 type PriceHistoryDaily @entity {
   "unique identifier is based on date"
 
   id: ID!
 
-  token: Token!
-
   asset: Asset!
 
   pricePerShare: BigInt!
+
+  txnHash: Bytes!
 
   timestamp: BigInt!
 }

@@ -1,33 +1,35 @@
-import { Asset, PriceHistoryDaily } from "../../../../generated/schema";
-import { V1Contract } from "../../../../generated/yBUSDVault/V1Contract";
+import { Asset, PriceHistoryDaily, Token } from "../../../../generated/schema";
 import { Address, log } from "@graphprotocol/graph-ts";
-import { BigDecimal, BigInt, Address } from "@graphprotocol/graph-ts";
-import { getOrCreateToken } from "./token";
+import { BigDecimal, BigInt, Address, Bytes } from "@graphprotocol/graph-ts";
 
-export function getOrCreateVaultAsAsset(vaultAddress: Address, timestamp: BigInt): PriceHistoryDaily {
+
+export function getOrCreateVaultAsAsset(vaultAddress: Address, vaultName: String, totalSupply:BigInt): Asset {
   let vault = Asset.load(vaultAddress.toHexString());
-  let vaultContract = V1Contract.bind(vaultAddress);
-
   if (vault == null) {
     vault = new Asset(vaultAddress.toHexString());
+    vault.name = vaultName;
   }
-
-  // Might be worth using the "try_" version of these calls in the future.
-  let tokenAddress = vaultContract.token();
-  let token = getOrCreateToken(tokenAddress);
-
-  vault.totalSupply = vaultContract.totalSupply();
-  vault.name = vaultContract.name();
+  vault.totalSupply = totalSupply;
   vault.save();
-
-  let priceHistoryID = roundToDay(timestamp).toString();
+  return vault as Asset;
+}
+export function getOrCreatePriceHistory(vault: Asset, pricePerFullShare:BigInt, timestamp: BigInt, txnHash: Bytes): PriceHistoryDaily {
+  let adjustedTimestamp = roundToDay(timestamp)
+  let priceHistoryID = adjustedTimestamp.toString() + vault.name;
   let transfer = PriceHistoryDaily.load(priceHistoryID);
+  if (transfer != null) {
+    log.info('Duplicate - txnHash:{} ,timeStamp:{}, calculatedTimestamp:{}', [
+      txnHash.toHexString(),
+      timestamp.toString(),
+      priceHistoryID,
+    ])
+  }
   if (transfer == null) {
     transfer = new PriceHistoryDaily(priceHistoryID);
     transfer.asset = vault.id;
-    transfer.token = token.id;
-    transfer.pricePerShare = vaultContract.getPricePerFullShare();
-    transfer.timestamp = timestamp;
+    transfer.pricePerShare = pricePerFullShare;
+    transfer.timestamp = adjustedTimestamp;
+    transfer.txnHash = txnHash;
 
     transfer.save();
   }
