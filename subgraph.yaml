@@ -23,7 +23,7 @@ dataSources:
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
+          handler: handleYEarnTransfer
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: yDAIVault
@@ -69,7 +69,32 @@ dataSources:
           file: ./abis/ERC20.json
       eventHandlers:
         - event: RemoveLiquidity(indexed address,uint256[4],uint256[4],uint256)
-          handler: handleTransfer
+          handler: handleCurveTransfer
         - event: AddLiquidity(indexed address,uint256[4],uint256[4],uint256,uint256)
-          handler: handleTransfer
+          handler: handleCurveTransfer
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: Curve_aave
+    network: mainnet
+    source:
+      address: "0xDeBF20617708857ebe4F679508E7b7863a8A8EeE"
+      abi: CurveAaveContract
+      startBlock: 11354154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveAaveContract
+          file: ./abis/CurveAaveContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: RemoveLiquidity(indexed address,uint256[3],uint256[3],uint256)
+          handler: handleCurveAaveTransfer
+        - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
+          handler: handleCurveAaveTransfer
       file: ./src/mapping.ts

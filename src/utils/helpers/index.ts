@@ -5,7 +5,3 @@ export {
 export {
   getOrCreatePriceHistory
 } from "./yVault/yVault";
-
-export {
-  getOrCreateToken
-} from "./yVault/token";
