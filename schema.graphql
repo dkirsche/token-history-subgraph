@@ -6,6 +6,8 @@ type Asset @entity {
   totalSupply: BigInt!
 
   priceHistoryDaily: [PriceHistoryDaily!]! @derivedFrom(field: "asset")
+
+  rewardHistoryDaily: [RewardHistoryDaily!]! @derivedFrom(field: "asset")
 }
 
 
@@ -17,6 +19,24 @@ type PriceHistoryDaily @entity {
   asset: Asset!
 
   pricePerShare: BigInt!
+
+  txnHash: Bytes!
+
+  timestamp: BigInt!
+}
+
+type RewardHistoryDaily @entity {
+  "unique identifier is based on date"
+
+  id: ID!
+
+  asset: Asset!
+
+  rewardPerShare: BigInt!
+
+  workingSupply: BigInt!
+
+  reward: BigInt! "daily reward (inflationPerSecond * 86400 * relative_weight)"
 
   txnHash: Bytes!
 
