@@ -48,6 +48,7 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleYEarnTransfer
       file: ./src/mapping.ts
+
   - kind: ethereum/contract
     name: Curve_ySwap
     network: mainnet
@@ -98,3 +99,31 @@ dataSources:
         - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
           handler: handleCurveAaveTransfer
       file: ./src/mapping.ts
+
+
+
+  - kind: ethereum/contract
+    name: curve_3pool
+    network: mainnet
+    source:
+      address: "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7"
+      abi: Curve3Pool
+      startBlock:
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: Curve3Pool
+          file: ./abis/Curve3Pool.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
+          handler: handleCurve3PoolTransfer
+        - event: RemoveLiquidity(indexed address,uint256[3],uint256[3],uint256)
+          handler: handleCurve3PoolTransfer
+      file: ./src/mappings/curve.ts
