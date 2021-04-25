@@ -98,26 +98,28 @@ dataSources:
         - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
           handler: handleCurveAaveTransfer
       file: ./src/mapping.ts
-- kind: ethereum/contract
-  name: Curve_aave_guage
-  network: mainnet
-  source:
-    address: "0xd662908ADA2Ea1916B3318327A97eB18aD588b5d"
-    abi: CurveAaveGuageContract
-    startBlock: 11354154
-  mapping:
-    kind: ethereum/events
-    apiVersion: 0.0.4
-    language: wasm/assemblyscript
-    entities:
-      - Asset
-      - RewardHistoryDaily
-    abis:
-      - name: CurveAaveGuageContract
-        file: ./abis/CurveAaveGuageContract.json
-      - name: ERC20
-        file: ./abis/ERC20.json
-    eventHandlers:
-      - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
-        handler: handleCurveAaveGuageUpdate
-    file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: Curve_aave_gauge
+    network: mainnet
+    source:
+      address: "0xd662908ADA2Ea1916B3318327A97eB18aD588b5d"
+      abi: CurveAaveGaugeContract
+      startBlock: 11354154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveAaveGaugeUpdate
+      file: ./src/mapping.ts

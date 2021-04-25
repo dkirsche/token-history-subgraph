@@ -8,6 +8,7 @@ type Asset @entity {
   priceHistoryDaily: [PriceHistoryDaily!]! @derivedFrom(field: "asset")
 
   rewardHistoryDaily: [RewardHistoryDaily!]! @derivedFrom(field: "asset")
+
 }
 
 
@@ -32,11 +33,19 @@ type RewardHistoryDaily @entity {
 
   asset: Asset!
 
-  rewardPerShare: BigInt!
+  gaugeId: Bytes!
+
+  rewardPerShareBoosted: BigInt!
+
+  rewardPerShareNotBoosted: BigInt!
 
   workingSupply: BigInt!
 
   reward: BigInt! "daily reward (inflationPerSecond * 86400 * relative_weight)"
+
+  rewardToken: String!
+
+  rewardTokenID: String!
 
   txnHash: Bytes!
 

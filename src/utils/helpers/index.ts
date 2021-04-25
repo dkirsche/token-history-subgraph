@@ -5,3 +5,7 @@ export {
 export {
   getOrCreatePriceHistory
 } from "./yVault/yVault";
+
+export {
+  roundToDay
+} from "./yVault/yVault";

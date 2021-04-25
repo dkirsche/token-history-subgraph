@@ -36,7 +36,7 @@ export function getOrCreatePriceHistory(vault: Asset, pricePerFullShare:BigInt, 
   return transfer as PriceHistoryDaily;
 }
 
-function roundToDay(timeStamp:BigInt): BigInt {
+export function roundToDay(timeStamp:BigInt): BigInt {
     timeStamp -= timeStamp % BigInt.fromI32(24 * 60 * 60);//subtract amount of time since midnight
     return timeStamp;
 }
