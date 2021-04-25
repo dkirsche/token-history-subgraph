@@ -35,9 +35,9 @@ type RewardHistoryDaily @entity {
 
   gaugeId: Bytes!
 
-  rewardPerShareBoosted: BigInt!
+  rewardPerShareBoosted: BigDecimal!
 
-  rewardPerShareNotBoosted: BigInt!
+  rewardPerShareNotBoosted: BigDecimal!
 
   workingSupply: BigInt!
 
