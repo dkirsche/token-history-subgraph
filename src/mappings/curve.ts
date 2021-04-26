@@ -26,3 +26,16 @@ export function handleCurveCompoundTransfer(event: RemoveLiquidity): void {
   let pricePerFullShare = vaultContract.get_virtual_price();
   createPriceHistory(vaultAddress, vaultName, totalSupply, pricePerFullShare, timestamp, txnHash)
 }
+
+
+export function handleCurveUSDPTransfer(event: RemoveLiquidity): void {
+  let vaultAddress  = event.address;
+  let vaultContract = CurveCompound.bind(vaultAddress);
+  let vaultName     = "curve_usdp";
+
+  let timestamp         = event.block.timestamp
+  let txnHash           = event.transaction.hash
+  let totalSupply       = event.params.token_supply;
+  let pricePerFullShare = vaultContract.get_virtual_price();
+  createPriceHistory(vaultAddress, vaultName, totalSupply, pricePerFullShare, timestamp, txnHash)
+}
