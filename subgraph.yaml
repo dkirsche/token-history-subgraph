@@ -31,7 +31,7 @@ dataSources:
     source:
       address: "0xacd43e627e64355f1861cec6d3a6688b31a6f952"
       abi: V1Contract
-      startBlock: 10796945
+      startBlock: 11354154
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -100,7 +100,31 @@ dataSources:
           handler: handleCurveAaveTransfer
       file: ./src/mapping.ts
 
-
+  - kind: ethereum/contract
+    name: Curve_aave_gauge
+    network: mainnet
+    source:
+      address: "0xd662908ADA2Ea1916B3318327A97eB18aD588b5d"
+      abi: CurveAaveGaugeContract
+      startBlock: 11554154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveAaveGaugeUpdate
+      file: ./src/mapping.ts
 
   - kind: ethereum/contract
     name: curve_3pool

@@ -10,6 +10,10 @@ export {
   getOrCreatePriceHistory
 } from "./yVault/yVault";
 
+export {
+  roundToDay
+} from "./yVault/yVault";
+
 
 export function createPriceHistory(vaultAddress: Address, vaultName: String, totalSupply:BigInt, pricePerFullShare:BigInt, timestamp: BigInt, txnHash: Bytes): void {
   let vault        = getOrCreateVaultAsAsset(vaultAddress,vaultName,totalSupply);
