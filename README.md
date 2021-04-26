@@ -19,6 +19,13 @@ The subgraph contains 2 entities
 3. You can use production subgraph to explore the data struct: https://api.thegraph.com/subgraphs/name/dkirsche/asset-price-history
 or you can set up a local subgraph (see below)
 
+## Example: Creating a Curve Subgraph
+1. Go to https://curve.fi/contracts and find the swap address
+2. Copy ABI from Etherscan's contract
+3. Update subgraph.yaml
+3. `yarn codegen`
+4. Add the necessary callbacks in `mappings/` directory
+
 ## Finding start block
 When defining the GraphQL schema, you can supply startBlock of the contract to significantly speed up deployment:
 
