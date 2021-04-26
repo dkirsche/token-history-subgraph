@@ -1,7 +1,5 @@
-import { Transfer } from "../../generated/yUSDVault/V1Contract";
-import { RemoveLiquidity } from "../../generated/Curve_ySwap/CurveContract";
-import { V1Contract } from "../../generated/yUSDVault/V1Contract";
-import { CurveContract } from "../../generated/Curve_ySwap/CurveContract";
+import { Transfer, V1Contract } from "../../generated/yUSDVault/V1Contract";
+import { RemoveLiquidity, CurveContract } from "../../generated/Curve_ySwap/CurveContract";
 import { CurveAaveContract } from "../../generated/Curve_aave/CurveAaveContract";
 import {
   getOrCreateVaultAsAsset, getOrCreatePriceHistory, createPriceHistory
