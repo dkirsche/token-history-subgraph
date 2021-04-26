@@ -4,7 +4,7 @@ import { V1Contract } from "../../generated/yUSDVault/V1Contract";
 import { CurveContract } from "../../generated/Curve_ySwap/CurveContract";
 import { CurveAaveContract } from "../../generated/Curve_aave/CurveAaveContract";
 import {
-  getOrCreateVaultAsAsset, getOrCreatePriceHistory
+  getOrCreateVaultAsAsset, getOrCreatePriceHistory, createPriceHistory
 } from "../utils/helpers";
 import { ZERO_ADDRESS } from "../utils/constants";
 import { BigDecimal, BigInt, Address, Bytes } from "@graphprotocol/graph-ts";
@@ -41,9 +41,4 @@ export function handleCurveAaveTransfer(event: RemoveLiquidity): void {
   let timestamp = event.block.timestamp
   let txnHash=event.transaction.hash
   createPriceHistory(vaultAddress,vaultName,totalSupply,pricePerFullShare, timestamp, txnHash)
-}
-
-function createPriceHistory(vaultAddress: Address, vaultName: String, totalSupply:BigInt, pricePerFullShare:BigInt, timestamp: BigInt, txnHash: Bytes): void {
-  let vault = getOrCreateVaultAsAsset(vaultAddress,vaultName,totalSupply);
-  let priceHistory = getOrCreatePriceHistory(vault, pricePerFullShare, timestamp, txnHash);
 }
