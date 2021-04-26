@@ -205,3 +205,30 @@ dataSources:
         - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
           handler: handleCurveUSDPTransfer
       file: ./src/mappings/curve.ts
+
+
+  - kind: ethereum/contract
+    name: curve_susd
+    network: mainnet
+    source:
+      address: "0xA5407eAE9Ba41422680e2e00537571bcC53efBfD"
+      abi: CurveSUSD
+      startBlock: 9906598
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveSUSD
+          file: ./abis/CurveSUSD.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[4],uint256[4],uint256,uint256)
+          handler: handleCurveSUSDTransfer
+        - event: RemoveLiquidity(indexed address,uint256[4],uint256[4],uint256)
+          handler: handleCurveSUSDTransfer
+      file: ./src/mappings/curve.ts
