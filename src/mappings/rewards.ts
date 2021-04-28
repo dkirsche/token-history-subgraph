@@ -8,18 +8,25 @@ import { BigDecimal, BigInt, Address, Bytes,log } from "@graphprotocol/graph-ts"
 
 
 export function handleCurveAaveGaugeUpdate(event: UpdateLiquidityLimit): void {
-  let gaugeController = Address.fromString("0x2F50D538606Fa9EDD2B11E2446BEb18C9D5846bB"); //global guage controller
   let vault = Address.fromString("0xDeBF20617708857ebe4F679508E7b7863a8A8EeE"); //address of vault that uses this guage
   let rewardToken = "CRV" //this will need to be updated to be dynamic
 
-  createRewardHistory(event,vault,gaugeController,rewardToken)
+  createRewardHistory(event,vault,rewardToken)
 }
 
-function createRewardHistory(event: UpdateLiquidityLimit, vaultID: Address, gaugeControllerAddress: Address, rewardToken: String): RewardHistoryDaily {
+export function handleCurveYGaugeUpdate(event: UpdateLiquidityLimit): void {
+  let vault = Address.fromString("0x45F783CCE6B7FF23B2ab2D70e416cdb7D6055f51"); //address of vault that uses this guage
+  let rewardToken = "CRV" //this will need to be updated to be dynamic
+
+  createRewardHistory(event,vault,rewardToken)
+}
+
+function createRewardHistory(event: UpdateLiquidityLimit, vaultID: Address, rewardToken: String): RewardHistoryDaily {
   let gaugeAddress = event.address;
   let workingSupply = event.params.working_supply
   let timestamp = event.block.timestamp
   let txnHash=event.transaction.hash
+  let gaugeControllerAddress = Address.fromString("0x2F50D538606Fa9EDD2B11E2446BEb18C9D5846bB"); //global gauge controller. should update this to lookup via address registry
 
   let gaugeContract = CurveAaveGaugeContract.bind(gaugeAddress);
   let gaugeController = CurveGaugeController.bind(gaugeControllerAddress);

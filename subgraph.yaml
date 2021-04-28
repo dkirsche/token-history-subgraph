@@ -75,6 +75,31 @@ dataSources:
           handler: handleCurveTransfer
       file: ./src/mapping.ts
   - kind: ethereum/contract
+    name: curve_y_gauge
+    network: mainnet
+    source:
+      address: "0xFA712EE4788C042e2B7BB55E6cb8ec569C4530c1"
+      abi: CurveAaveGaugeContract
+      startBlock: 11354154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveYGaugeUpdate
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
     name: curve_aave
     network: mainnet
     source:
