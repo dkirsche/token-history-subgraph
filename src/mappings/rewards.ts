@@ -20,6 +20,36 @@ export function handleCurveYGaugeUpdate(event: UpdateLiquidityLimit): void {
 
   createRewardHistory(event,vault,rewardToken)
 }
+export function handleCurve3PoolGaugeUpdate(event: UpdateLiquidityLimit): void {
+  let vault = Address.fromString("0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7"); //address of vault that uses this guage
+  let rewardToken = "CRV" //this will need to be updated to be dynamic
+
+  createRewardHistory(event,vault,rewardToken)
+}
+export function handleCurveCompoundGaugeUpdate(event: UpdateLiquidityLimit): void {
+  let vault = Address.fromString("0xA2B47E3D5c44877cca798226B7B8118F9BFb7A56"); //address of vault that uses this guage
+  let rewardToken = "CRV" //this will need to be updated to be dynamic
+
+  createRewardHistory(event,vault,rewardToken)
+}
+export function handleCurveUSDPGaugeUpdate(event: UpdateLiquidityLimit): void {
+  let vault = Address.fromString("0x42d7025938bEc20B69cBae5A77421082407f053A"); //address of vault that uses this guage
+  let rewardToken = "CRV" //this will need to be updated to be dynamic
+
+  createRewardHistory(event,vault,rewardToken)
+}
+export function handleCurveSUSDGaugeUpdate(event: UpdateLiquidityLimit): void {
+  let vault = Address.fromString("0xA5407eAE9Ba41422680e2e00537571bcC53efBfD"); //address of vault that uses this guage
+  let rewardToken = "CRV" //this will need to be updated to be dynamic
+
+  createRewardHistory(event,vault,rewardToken)
+}
+export function handleCurveRenGaugeUpdate(event: UpdateLiquidityLimit): void {
+  let vault = Address.fromString("0x93054188d876f558f4a66B2EF1d97d16eDf0895B"); //address of vault that uses this guage
+  let rewardToken = "CRV" //this will need to be updated to be dynamic
+
+  createRewardHistory(event,vault,rewardToken)
+}
 
 function createRewardHistory(event: UpdateLiquidityLimit, vaultID: Address, rewardToken: String): RewardHistoryDaily {
   let gaugeAddress = event.address;
