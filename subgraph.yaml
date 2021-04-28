@@ -48,6 +48,7 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleYEarnTransfer
       file: ./src/mapping.ts
+
   - kind: ethereum/contract
     name: Curve_ySwap
     network: mainnet
@@ -98,6 +99,7 @@ dataSources:
         - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
           handler: handleCurveAaveTransfer
       file: ./src/mapping.ts
+
   - kind: ethereum/contract
     name: Curve_aave_gauge
     network: mainnet
@@ -123,3 +125,137 @@ dataSources:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurveAaveGaugeUpdate
       file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: curve_3pool
+    network: mainnet
+    source:
+      address: "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7"
+      abi: Curve3Pool
+      startBlock: 10809473
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: Curve3Pool
+          file: ./abis/Curve3Pool.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
+          handler: handleCurve3PoolTransfer
+        - event: RemoveLiquidity(indexed address,uint256[3],uint256[3],uint256)
+          handler: handleCurve3PoolTransfer
+      file: ./src/mappings/curve.ts
+
+
+  - kind: ethereum/contract
+    name: curve_compound
+    network: mainnet
+    source:
+      address: "0xA2B47E3D5c44877cca798226B7B8118F9BFb7A56"
+      abi: CurveCompound
+      startBlock: 9554040
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveCompound
+          file: ./abis/CurveCompound.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleCurveCompoundTransfer
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleCurveCompoundTransfer
+      file: ./src/mappings/curve.ts
+
+
+  - kind: ethereum/contract
+    name: curve_usdp
+    network: mainnet
+    source:
+      address: "0x42d7025938bEc20B69cBae5A77421082407f053A"
+      abi: CurveUSDP
+      startBlock: 11922057
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveUSDP
+          file: ./abis/CurveUSDP.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleCurveUSDPTransfer
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleCurveUSDPTransfer
+      file: ./src/mappings/curve.ts
+
+
+  - kind: ethereum/contract
+    name: curve_susd
+    network: mainnet
+    source:
+      address: "0xA5407eAE9Ba41422680e2e00537571bcC53efBfD"
+      abi: CurveSUSD
+      startBlock: 9906598
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveSUSD
+          file: ./abis/CurveSUSD.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[4],uint256[4],uint256,uint256)
+          handler: handleCurveSUSDTransfer
+        - event: RemoveLiquidity(indexed address,uint256[4],uint256[4],uint256)
+          handler: handleCurveSUSDTransfer
+      file: ./src/mappings/curve.ts
+
+
+  - kind: ethereum/contract
+    name: curve_ren
+    network: mainnet
+    source:
+      address: "0x93054188d876f558f4a66B2EF1d97d16eDf0895B"
+      abi: CurveRen
+      startBlock: 10151385
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveRen
+          file: ./abis/CurveRen.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleCurveRenTransfer
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleCurveRenTransfer
+      file: ./src/mappings/curve.ts

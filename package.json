@@ -22,5 +22,8 @@
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",
     "@graphprotocol/graph-ts": "0.18.0"
+  },
+  "devDependencies": {
+    "hardhat": "^2.2.1"
   }
 }

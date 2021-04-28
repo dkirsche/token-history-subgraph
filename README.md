@@ -19,6 +19,25 @@ The subgraph contains 2 entities
 3. You can use production subgraph to explore the data struct: https://api.thegraph.com/subgraphs/name/dkirsche/asset-price-history
 or you can set up a local subgraph (see below)
 
+## Example: Creating a Curve Subgraph
+1. Go to https://curve.fi/contracts and find the swap address
+2. Copy ABI from Etherscan's contract
+3. Update subgraph.yaml
+3. `yarn codegen`
+4. Add the necessary callbacks in `mappings/` directory
+
+## Finding start block
+When defining the GraphQL schema, you can supply startBlock of the contract to significantly speed up deployment:
+
+```
+// https://thegraph.com/docs/define-a-subgraph#start-blocks
+Note: The contract creation block can be quickly looked up on Etherscan:
+
+1. Search for the contract by entering its address in the search bar.
+2. Click on the creation transaction hash in the Contract Creator section.
+3. Load the transaction details page where you'll find the start block for that contract.
+```
+
 ## Setting up a local subgraph
 1. Setup an ETH mainnet locally. You can use AlchemyAPI: https://alchemyapi.io/?r=2190e565-4752-43b5-ba0f-ed0cf4948249. Make sure to choose Mainnet and Production as your blockchain. Fork a local ETH mainnet by running (make sure hardhat is installed). I'm forking at earliest block number found in subgraph.yaml (https://etherscan.io/blocks?p=59078)
 
