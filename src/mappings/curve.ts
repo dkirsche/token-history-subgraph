@@ -60,7 +60,7 @@ export function handleCurveSUSDTransfer(event: RemoveLiquidity): void {
 export function handleCurveRenTransfer(event: RemoveLiquidity): void {
   let vaultAddress  = event.address;
   let vaultContract = CurveRen.bind(vaultAddress);
-  let vaultName     = "curve_susd";
+  let vaultName     = "curve_ren";
 
   let timestamp         = event.block.timestamp
   let txnHash           = event.transaction.hash
