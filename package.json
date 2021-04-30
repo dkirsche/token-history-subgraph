@@ -14,7 +14,7 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dkirsche/asset-price-history",
+    "deploy-test": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dkirsche/pricehistorytest",
     "create-local": "graph create --node http://localhost:8020/ dkirsche/asset-price-history",
     "remove-local": "graph remove --node http://localhost:8020/ dkirsche/asset-price-history",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dkirsche/asset-price-history"

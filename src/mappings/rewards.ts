@@ -6,7 +6,12 @@ import { Asset, RewardHistoryDaily } from "../../generated/schema";
 import { roundToDay } from "../utils/helpers";
 import { BigDecimal, BigInt, Address, Bytes,log } from "@graphprotocol/graph-ts";
 
+export function handleCurveAaveGaugeUpdate_matic(event: UpdateLiquidityLimit): void {
+  let vault = Address.fromString("0x445FE580eF8d70FF569aB36e80c647af338db351"); //address of vault that uses this guage
+  let rewardToken = "MATIC" //this will need to be updated to be dynamic
 
+  createRewardHistory(event,vault,rewardToken)
+}
 export function handleCurveAaveGaugeUpdate(event: UpdateLiquidityLimit): void {
   let vault = Address.fromString("0xDeBF20617708857ebe4F679508E7b7863a8A8EeE"); //address of vault that uses this guage
   let rewardToken = "CRV" //this will need to be updated to be dynamic
