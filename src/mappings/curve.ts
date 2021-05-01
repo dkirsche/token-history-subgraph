@@ -1,4 +1,5 @@
-import { RemoveLiquidity }    from "../../generated/curve_3pool/Curve3Pool";
+import { RemoveLiquidity }   from "../../generated/Curve_aave/CurveAaveContract";
+import { CurveAaveContract } from "../../generated/Curve_aave/CurveAaveContract";
 import { Curve3Pool }    from "../../generated/curve_3pool/Curve3Pool";
 import { CurveCompound } from "../../generated/curve_compound/CurveCompound";
 import { CurveUSDP } from "../../generated/curve_usdp/CurveUSDP";
@@ -8,7 +9,7 @@ import { createPriceHistory } from "../utils/helpers"
 
 export function handleCurveAaveTransfer_matic(event: RemoveLiquidity): void {
   let vaultAddress  = event.address;
-  let vaultContract = Curve3Pool.bind(vaultAddress);
+  let vaultContract = CurveAaveContract.bind(vaultAddress);
   let vaultName     = "curve_aave_matic";
 
   let timestamp         = event.block.timestamp
