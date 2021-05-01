@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x5dbcf33d8c2e976c6b560249878e6f1491bca25c"
       abi: V1Contract
-      startBlock: 11354154
+      startBlock: 10559467
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -31,7 +31,7 @@ dataSources:
     source:
       address: "0xacd43e627e64355f1861cec6d3a6688b31a6f952"
       abi: V1Contract
-      startBlock: 11354154
+      startBlock: 10650214
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -55,7 +55,7 @@ dataSources:
     source:
       address: "0x45F783CCE6B7FF23B2ab2D70e416cdb7D6055f51"
       abi: CurveContract
-      startBlock: 11354154
+      startBlock: 9476528
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -80,7 +80,7 @@ dataSources:
     source:
       address: "0xFA712EE4788C042e2B7BB55E6cb8ec569C4530c1"
       abi: CurveAaveGaugeContract
-      startBlock: 11354154
+      startBlock: 10654335
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -131,7 +131,7 @@ dataSources:
     source:
       address: "0xd662908ADA2Ea1916B3318327A97eB18aD588b5d"
       abi: CurveAaveGaugeContract
-      startBlock: 11554154
+      startBlock: 11518438
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -182,7 +182,7 @@ dataSources:
     source:
       address: "0xbFcF63294aD7105dEa65aA58F8AE5BE2D9d0952A"
       abi: CurveAaveGaugeContract
-      startBlock: 10809473
+      startBlock: 10817159
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -233,7 +233,7 @@ dataSources:
     source:
       address: "0x7ca5b0a2910B33e9759DC7dDB0413949071D7575"
       abi: CurveAaveGaugeContract
-      startBlock: 11554154
+      startBlock: 10654371
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -284,7 +284,7 @@ dataSources:
     source:
       address: "0x055be5DDB7A925BfEF3417FC157f53CA77cA7222"
       abi: CurveAaveGaugeContract
-      startBlock: 11922057
+      startBlock: 11954008
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -335,7 +335,7 @@ dataSources:
     source:
       address: "0xA90996896660DEcC6E997655E065b23788857849"
       abi: CurveAaveGaugeContract
-      startBlock: 9911063
+      startBlock: 10654603
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -386,7 +386,7 @@ dataSources:
     source:
       address: "0xB1F2cdeC61db658F091671F5f199635aEF202CAC"
       abi: CurveAaveGaugeContract
-      startBlock: 10151385
+      startBlock: 10647928
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
