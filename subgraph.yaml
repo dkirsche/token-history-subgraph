@@ -98,7 +98,7 @@ dataSources:
       eventHandlers:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurveYGaugeUpdate
-      file: ./src/mapping.ts
+      file: ./src/mappings/rewards.ts
   - kind: ethereum/contract
     name: curve_aave
     network: mainnet
@@ -149,7 +149,7 @@ dataSources:
       eventHandlers:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurveAaveGaugeUpdate
-      file: ./src/mapping.ts
+      file: ./src/mappings/rewards.ts
 
   - kind: ethereum/contract
     name: curve_3pool
@@ -200,7 +200,7 @@ dataSources:
       eventHandlers:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurve3PoolGaugeUpdate
-      file: ./src/mapping.ts
+      file: ./src/mappings/rewards.ts
 
   - kind: ethereum/contract
     name: curve_compound
@@ -251,7 +251,7 @@ dataSources:
       eventHandlers:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurveCompoundGaugeUpdate
-      file: ./src/mapping.ts
+      file: ./src/mappings/rewards.ts
 
   - kind: ethereum/contract
     name: curve_usdp
@@ -302,7 +302,7 @@ dataSources:
       eventHandlers:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurveUSDPGaugeUpdate
-      file: ./src/mapping.ts
+      file: ./src/mappings/rewards.ts
 
   - kind: ethereum/contract
     name: curve_susd
@@ -353,7 +353,7 @@ dataSources:
       eventHandlers:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurveSUSDGaugeUpdate
-      file: ./src/mapping.ts
+      file: ./src/mappings/rewards.ts
 
   - kind: ethereum/contract
     name: curve_ren
@@ -404,4 +404,4 @@ dataSources:
       eventHandlers:
         - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
           handler: handleCurveRenGaugeUpdate
-      file: ./src/mapping.ts
+      file: ./src/mappings/rewards.ts

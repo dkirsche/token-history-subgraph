@@ -62,7 +62,7 @@ function createRewardHistory(event: UpdateLiquidityLimit, vaultID: Address, rewa
   let gaugeController = CurveGaugeController.bind(gaugeControllerAddress);
 
   let adjustedTimestamp = roundToDay(timestamp)
-  let rewardHistoryID = adjustedTimestamp.toString() + gaugeContract.name();
+  let rewardHistoryID = adjustedTimestamp.toString() + gaugeAddress.toHexString();
   let dailyReward = RewardHistoryDaily.load(rewardHistoryID);
   if (dailyReward != null) {
     log.info('Duplicate - txnHash:{} ,timeStamp:{}, rewardHistoryID:{}', [
