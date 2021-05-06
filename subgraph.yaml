@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x445FE580eF8d70FF569aB36e80c647af338db351"
       abi: CurveAaveContract
-      startBlock: 14018998
+      startBlock: 13479484
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -34,7 +34,7 @@ dataSources:
     source:
       address: "0xe381C25de995d62b453aF8B931aAc84fcCaa7A62"
       abi: CurveRewardsOnlyGauge
-      startBlock: 14018998
+      startBlock: 13483661
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
