@@ -24,7 +24,7 @@ dataSources:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleYEarnTransfer
-      file: ./src/mapping.ts
+      file: ./src/mappings/yVault.ts
   - kind: ethereum/contract
     name: yearn_DAI
     network: {{network}}
@@ -47,7 +47,7 @@ dataSources:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleYEarnTransfer
-      file: ./src/mapping.ts
+      file: ./src/mappings/yVault.ts
 
   - kind: ethereum/contract
     name: curve_Y
@@ -73,7 +73,7 @@ dataSources:
           handler: handleCurveTransfer
         - event: AddLiquidity(indexed address,uint256[4],uint256[4],uint256,uint256)
           handler: handleCurveTransfer
-      file: ./src/mapping.ts
+      file: ./src/mappings/curve.ts
   - kind: ethereum/contract
     name: curve_y_gauge
     network: {{network}}
@@ -123,7 +123,7 @@ dataSources:
           handler: handleCurveAaveTransfer
         - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
           handler: handleCurveAaveTransfer
-      file: ./src/mapping.ts
+      file: ./src/mappings/curve.ts
 
   - kind: ethereum/contract
     name: curve_aave_gauge

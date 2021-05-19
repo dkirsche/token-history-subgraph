@@ -14,11 +14,14 @@ export function handleCurveAaveTransfer_matic(event: RemoveLiquidity): void {
   let vaultContract = CurveAaveContract.bind(vaultAddress);
   let vaultName     = "curve_aave_matic";
 
-  let timestamp         = event.block.timestamp
-  let txnHash           = event.transaction.hash
-  let totalSupply       = event.params.token_supply;
-  let pricePerFullShare = vaultContract.get_virtual_price();
-  createPriceHistory(vaultAddress, vaultName, totalSupply, pricePerFullShare, timestamp, txnHash)
+  createPriceHistory(
+    vaultAddress,
+    vaultName,
+    event.params.token_supply,
+    vaultContract.get_virtual_price(),
+    event.block.timestamp,
+    event.transaction.hash
+  )
 }
 
 export function handleCurveAaveGaugeUpdate_matic(event: Deposit): void {
