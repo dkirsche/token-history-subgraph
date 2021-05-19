@@ -12,19 +12,27 @@
     ]
   },
   "scripts": {
-    "codegen": "graph codegen",
+    "subgraph:codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dkirsche/asset-price-history",
     "deploy-test": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dkirsche/pricehistorytest",
+    "deploy-test": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dkirsche/pricehistorytest",
     "create-local": "graph create --node http://localhost:8020/ dkirsche/asset-price-history",
     "remove-local": "graph remove --node http://localhost:8020/ dkirsche/asset-price-history",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dkirsche/asset-price-history"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dkirsche/asset-price-history",
+    "prepare:subgraph": "mustache ./config/${NETWORK}.json ${BLOCKCHAIN}.subgraph.template.yaml > subgraph.yaml && npm run subgraph:codegen",
+    "deploy:mainnet": "NETWORK=mainnet BLOCKCHAIN=ethereum env-cmd npm run prepare:subgraph && SLUG=dkirsche/asset-price-history env-cmd npm run subgraph:deploy",
+    "deploy:polygon": "NETWORK=matic BLOCKCHAIN=matic env-cmd npm run prepare:subgraph && SLUG=dkirsche/pricehistorytest env-cmd npm run subgraph:deploy",
+    "subgraph:deploy": "graph deploy $SLUG --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --access-token $ACCESS_TOKEN",
+    "deploy-all": "run-s deploy:*"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",
-    "@graphprotocol/graph-ts": "0.18.0"
+    "@graphprotocol/graph-ts": "0.18.0",
+    "env-cmd": "^10.1.0"
   },
   "devDependencies": {
-    "hardhat": "^2.2.1"
+    "hardhat": "^2.2.1",
+    "mustache": "^3.1.0"
   }
 }
