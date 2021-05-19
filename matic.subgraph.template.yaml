@@ -1,0 +1,58 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: curve_aave_matic
+    network: {{network}}
+    source:
+      address: "{{curve_aave_maticAddress}}"
+      abi: CurveAaveContract
+      startBlock: {{curve_aave_maticStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveAaveContract
+          file: ./abis/CurveAaveContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: RemoveLiquidity(indexed address,uint256[3],uint256[3],uint256)
+          handler: handleCurveAaveTransfer_matic
+        - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
+          handler: handleCurveAaveTransfer_matic
+      file: ./src/mappings/curve.ts
+
+  - kind: ethereum/contract
+    name: curve_aave_gauge_matic
+    network: {{network}}
+    source:
+      address: "{{curve_aave_gauge_maticAddress}}"
+      abi: CurveRewardsOnlyGauge
+      startBlock: {{curve_aave_gauge_maticStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+        - AdditionalRewards
+      abis:
+        - name: CurveAaveContract
+          file: ./abis/CurveAaveContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveRewardsOnlyGauge
+          file: ./abis/CurveRewardsOnlyGauge.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleCurveAaveGaugeUpdate_matic
+        - event: Withdraw(indexed address,uint256)
+          handler: handleCurveAaveGaugeUpdate_matic
+      file: ./src/mappings/rewards.ts
