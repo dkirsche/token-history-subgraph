@@ -19,3 +19,7 @@ export function createPriceHistory(vaultAddress: Address, vaultName: String, tot
   let vault        = getOrCreateVaultAsAsset(vaultAddress,vaultName,totalSupply);
   let priceHistory = getOrCreatePriceHistory(vault, pricePerFullShare, timestamp, txnHash);
 }
+
+export {
+  createOtherRewardHistory,
+} from "./yVault/yVault";

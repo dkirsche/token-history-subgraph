@@ -35,6 +35,44 @@ export function getOrCreatePriceHistory(vault: Asset, pricePerFullShare:BigInt, 
   }
   return transfer as PriceHistoryDaily;
 }
+export function createOtherRewardHistory(
+  timestamp: BigInt,
+  txnHash: Bytes,
+  rewardAddress: Address,
+  assetAddress: Address,
+  rewards: BigInt,
+  totalSupply: BigInt,
+  rewardToken: Address
+): RewardOther {
+
+
+  let adjustedTimestamp = roundToDay(timestamp)
+  let dailyID = adjustedTimestamp.toString() + rewardAddress.toHexString();
+  let additionalReward = RewardOther.load(dailyID);
+  if (additionalReward != null) {
+    log.info('Duplicate_RewardOther - txnHash:{} ,timeStamp:{}', [
+      txnHash.toHexString(),
+      adjustedTimestamp.toString(),
+    ])
+    return additionalReward as RewardOther;
+  }
+  log.info('New_RewardOther - txnHash:{} ,timeStamp:{}', [
+    txnHash.toHexString(),
+    timestamp.toString(),
+  ])
+  additionalReward = new RewardOther(dailyID);
+  additionalReward.asset = assetAddress.toHexString();
+  additionalReward.gaugeId = rewardAddress;
+  additionalReward.rewardIntegral = rewards
+  additionalReward.totalSupply = totalSupply
+  additionalReward.rewardTokenID = rewardToken.toHexString()
+  additionalReward.timestamp = adjustedTimestamp;
+  additionalReward.txnHash = txnHash;
+
+  additionalReward.save();
+
+  return additionalReward as RewardOther;
+}
 
 export function roundToDay(timeStamp:BigInt): BigInt {
     timeStamp -= timeStamp % BigInt.fromI32(24 * 60 * 60);//subtract amount of time since midnight

@@ -27,7 +27,6 @@ export function handleCurveAaveTransfer_matic(event: RemoveLiquidity): void {
 export function handleCurveAaveGaugeUpdate_matic(event: Deposit): void {
   let vault = Address.fromString("0x445FE580eF8d70FF569aB36e80c647af338db351"); //address of vault that uses this guage
   let rewardToken = "CRV" //this will need to be updated to be dynamic
-  log.info('handleCurveAaveGaugeUpdate_matic was executed',[])
 //if rewards contract is not 0 then load the rewards gaugeContract
 //save that to additional rewards entity
   createOtherRewardHistory(event,vault,rewardToken)
@@ -57,8 +56,8 @@ function createOtherRewardHistory(event: Deposit, vaultID: Address, rewardToken:
   additionalReward.gaugeId = gaugeAddress;
   additionalReward.rewardIntegral = gaugeContract.reward_integral(gaugeContract.reward_tokens(BigInt.fromI32(0)))
   additionalReward.totalSupply = gaugeContract.totalSupply()
-  additionalReward.rewardContract = gaugeContract.reward_contract().toHexString()
-  additionalReward.reward = gaugeContract.reward_balances(gaugeContract.reward_tokens(BigInt.fromI32(0)))
+  //additionalReward.rewardContract = gaugeContract.reward_contract().toHexString()
+  //additionalReward.reward = gaugeContract.reward_balances(gaugeContract.reward_tokens(BigInt.fromI32(0)))
   additionalReward.rewardTokenID = gaugeContract.reward_tokens(BigInt.fromI32(0)).toHexString()
   additionalReward.timestamp = adjustedTimestamp;
   additionalReward.txnHash = txnHash;

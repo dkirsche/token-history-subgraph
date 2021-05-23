@@ -67,8 +67,6 @@ type RewardOther @entity {
 
   totalSupply: BigInt!
 
-  rewardContract: String!
-
   reward: BigInt! "daily reward (inflationPerSecond * 86400 * relative_weight)"
 
   rewardTokenID: String!
