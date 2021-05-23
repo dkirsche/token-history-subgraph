@@ -12,11 +12,11 @@ import { RewardOther } from "../../generated/schema";
 // previous_day_liquidity_change = (liquidityIndex_day1 -liquidityIndex_day0) /1e27
 // seconds_between_liquidity_data = timestamp_day1 -timstamp_day0
 // convert to APY = previous_day_liquidity_change * (seconds_in_a_year / seconds_between_liquidity_data)
-export function handleReserveUpdates(event: ReserveDataUpdated): void {
+export function handlePriceHistoryUpdates(event: ReserveDataUpdated): void {
   let vaultAddress = event.address;
   let vaultContract = AavePool.bind(vaultAddress);
-  let reserveData = vaultContract.getReserveData()
-  let aTokenAddress = reserveData.aTokenAddress()
+  let reserveData = vaultContract.getReserveData(event.params.reserve)
+  let aTokenAddress = reserveData.aTokenAddress
   let aToken = AaveAToken.bind(aTokenAddress)
   let vaultName = "Aave" + aToken.symbol()
 
@@ -24,17 +24,17 @@ export function handleReserveUpdates(event: ReserveDataUpdated): void {
     aTokenAddress,
     vaultName,
     aToken.totalSupply(),
-    reserveData.liquidityIndex(),
+    reserveData.liquidityIndex,
     event.block.timestamp,
     event.transaction.hash
   )
 }
 
-export function handleReserveUpdates(event: AssetIndexUpdated): void {
+export function handleRewardsEvents(event: AssetIndexUpdated): void {
   let rewardsAddress = event.address;
   let rewardsContract = AaveRewards.bind(rewardsAddress);
   let rewardToken = rewardsContract.REWARD_TOKEN();
-  let aTokenAddress = event.asset();
+  let aTokenAddress = event.params.asset;
   let aToken = AaveAToken.bind(aTokenAddress);
   let rewardIndex = event.params.index
   createOtherRewardHistory(
@@ -43,7 +43,7 @@ export function handleReserveUpdates(event: AssetIndexUpdated): void {
     rewardsAddress,
     aTokenAddress,
     rewardIndex,
-    NULL, //total_supply does not apply to aave. They use emissionPerSecond, Representing the total rewards distributed per second per asset unit, on the distribution
+    null, //total_supply does not apply to aave. They use emissionPerSecond, Representing the total rewards distributed per second per asset unit, on the distribution
     rewardToken
   )
   //createOtherRewardHistory(event,aTokenAddress,rewardToken);

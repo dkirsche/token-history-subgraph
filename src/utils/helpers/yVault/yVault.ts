@@ -1,4 +1,4 @@
-import { Asset, PriceHistoryDaily } from "../../../../generated/schema";
+import { Asset, PriceHistoryDaily, RewardOther } from "../../../../generated/schema";
 import { Address, log } from "@graphprotocol/graph-ts";
 import { BigDecimal, BigInt, Address, Bytes } from "@graphprotocol/graph-ts";
 

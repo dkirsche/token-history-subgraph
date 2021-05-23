@@ -23,7 +23,7 @@ dataSources:
           file: ./abis/AaveAToken.json
       eventHandlers:
         - event: ReserveDataUpdated(indexed address,uint256,uint256,uint256,uint256,uint256)
-          handler: handleReserveUpdates
+          handler: handlePriceHistoryUpdates
       file: ./src/mappings/aave.ts
   - kind: ethereum/contract
     name: aave_rewards
@@ -44,5 +44,5 @@ dataSources:
           file: ./abis/AaveRewards.json
       eventHandlers:
         - event: AssetIndexUpdated(indexed address,uint256)
-          handler: handleAssetIndexUpdated
+          handler: handleRewardsEvents
       file: ./src/mappings/aave.ts
