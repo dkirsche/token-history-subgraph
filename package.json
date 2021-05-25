@@ -24,6 +24,7 @@
     "prepare:test": "mustache ./config/mainnet.json test.subgraph.template.yaml > subgraph.yaml && npm run subgraph:codegen",
     "deploy:mainnet": "NETWORK=mainnet BLOCKCHAIN=ethereum env-cmd npm run prepare:subgraph && SLUG=dkirsche/asset-price-history env-cmd npm run subgraph:deploy",
     "deploy:polygon": "NETWORK=matic BLOCKCHAIN=matic env-cmd npm run prepare:subgraph && SLUG=dkirsche/pricehistorytest env-cmd npm run subgraph:deploy",
+    "deploy:test": "env-cmd npm run prepare:test && SLUG=dkirsche/sandbox env-cmd npm run subgraph:deploy",
     "subgraph:deploy": "graph deploy $SLUG --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --access-token $ACCESS_TOKEN",
     "deploy-all": "run-s deploy:*"
   },

@@ -34,14 +34,13 @@ export function handleRewardsEvents(event: AssetIndexUpdated): void {
   let rewardsAddress = event.address;
   let rewardsContract = AaveRewards.bind(rewardsAddress);
   let rewardToken = rewardsContract.REWARD_TOKEN();
-  let aTokenAddress = event.params.asset;
-  let aToken = AaveAToken.bind(aTokenAddress);
+  let tokenAddress = event.params.asset; // this can be an atoken or variableToken
   let rewardIndex = event.params.index
   createOtherRewardHistory(
     event.block.timestamp,
     event.transaction.hash,
     rewardsAddress,
-    aTokenAddress,
+    tokenAddress,
     rewardIndex,
     null, //total_supply does not apply to aave. They use emissionPerSecond, Representing the total rewards distributed per second per asset unit, on the distribution
     rewardToken

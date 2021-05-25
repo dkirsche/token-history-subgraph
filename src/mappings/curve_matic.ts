@@ -61,6 +61,7 @@ function createOtherRewardHistory(event: Deposit, vaultID: Address, rewardToken:
   additionalReward.rewardTokenID = gaugeContract.reward_tokens(BigInt.fromI32(0)).toHexString()
   additionalReward.timestamp = adjustedTimestamp;
   additionalReward.txnHash = txnHash;
+  additionalReward.txnTimestamp = timestamp;
 
   additionalReward.save();
 

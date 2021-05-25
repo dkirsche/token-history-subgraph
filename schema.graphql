@@ -67,11 +67,13 @@ type RewardOther @entity {
 
   totalSupply: BigInt!
 
-  reward: BigInt! "daily reward (inflationPerSecond * 86400 * relative_weight)"
+  reward: BigInt
 
   rewardTokenID: String!
 
   txnHash: Bytes!
 
   timestamp: BigInt!
+
+  txnTimestamp: BigInt 
 }

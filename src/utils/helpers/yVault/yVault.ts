@@ -38,8 +38,8 @@ export function getOrCreatePriceHistory(vault: Asset, pricePerFullShare:BigInt, 
 export function createOtherRewardHistory(
   timestamp: BigInt,
   txnHash: Bytes,
-  rewardAddress: Address,
-  assetAddress: Address,
+  rewardAddress: Address, //address of contract that is calculating the reward
+  assetAddress: Address, //asset or pool that is receiving the reward
   rewards: BigInt,
   totalSupply: BigInt,
   rewardToken: Address
@@ -47,7 +47,7 @@ export function createOtherRewardHistory(
 
 
   let adjustedTimestamp = roundToDay(timestamp)
-  let dailyID = adjustedTimestamp.toString() + rewardAddress.toHexString();
+  let dailyID = adjustedTimestamp.toString() + assetAddress.toHexString();
   let additionalReward = RewardOther.load(dailyID);
   if (additionalReward != null) {
     log.info('Duplicate_RewardOther - txnHash:{} ,timeStamp:{}', [
@@ -66,8 +66,9 @@ export function createOtherRewardHistory(
   additionalReward.rewardIntegral = rewards
   additionalReward.totalSupply = totalSupply
   additionalReward.rewardTokenID = rewardToken.toHexString()
-  additionalReward.timestamp = adjustedTimestamp;
+  additionalReward.timestamp = adjustedTimestamp; //adjusted timestamp, unique by the day
   additionalReward.txnHash = txnHash;
+  additionalReward.txnTimestamp = timestamp;  //actual timestamp of transaction
 
   additionalReward.save();
 
