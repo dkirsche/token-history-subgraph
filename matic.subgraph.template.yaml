@@ -56,3 +56,47 @@ dataSources:
         - event: Withdraw(indexed address,uint256)
           handler: handleCurveAaveGaugeUpdate_matic
       file: ./src/mappings/curve_matic.ts
+  - kind: ethereum/contract
+    name: aave_pool
+    network: {{network}}
+    source:
+      address: "{{aave_poolAddress}}"
+      abi: AavePool
+      startBlock: {{aave_poolStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: AavePool
+          file: ./abis/AavePool.json
+        - name: AaveAToken
+          file: ./abis/AaveAToken.json
+      eventHandlers:
+        - event: ReserveDataUpdated(indexed address,uint256,uint256,uint256,uint256,uint256)
+          handler: handlePriceHistoryUpdates
+      file: ./src/mappings/aave.ts
+  - kind: ethereum/contract
+    name: aave_rewards
+    network: {{network}}
+    source:
+      address: "{{aave_rewardsAddress}}"
+      abi: AaveRewards
+      startBlock: {{aave_rewardsStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - AdditionalRewards
+      abis:
+        - name: AaveRewards
+          file: ./abis/AaveRewards.json
+      eventHandlers:
+        - event: AssetIndexUpdated(indexed address,uint256)
+          handler: handleRewardsEvents
+      file: ./src/mappings/aave.ts

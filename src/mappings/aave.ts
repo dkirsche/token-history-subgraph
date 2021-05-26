@@ -5,6 +5,7 @@ import { AaveRewards } from "../../generated/aave_rewards/AaveRewards";
 import { AaveAToken } from "../../generated/aave_pool/AaveAToken";
 import { createPriceHistory, createOtherRewardHistory } from "../utils/helpers"
 import { RewardOther } from "../../generated/schema";
+import { BigInt } from "@graphprotocol/graph-ts";
 
 // For calculating base apy
 //reserve update event is emitted when reserve data (including liquidityIndex) is updated
@@ -35,13 +36,16 @@ export function handleRewardsEvents(event: AssetIndexUpdated): void {
   let rewardsContract = AaveRewards.bind(rewardsAddress);
   let rewardToken = rewardsContract.REWARD_TOKEN();
   let tokenAddress = event.params.asset; // this can be an atoken or variableToken
+  let token = AaveAToken.bind(tokenAddress) //this could be an aToken or variable token. using AToken's ABI since they are very similar
+  let tokenDecimal = token.decimals() as u8
   let rewardIndex = event.params.index
+  let rewardIntegral =  rewardIndex/BigInt.fromI32(10).pow(18 as u8 - tokenDecimal)//this is normalized to how we store this for other protocols
   createOtherRewardHistory(
     event.block.timestamp,
     event.transaction.hash,
     rewardsAddress,
     tokenAddress,
-    rewardIndex,
+    rewardIntegral,
     null, //total_supply does not apply to aave. They use emissionPerSecond, Representing the total rewards distributed per second per asset unit, on the distribution
     rewardToken
   )
