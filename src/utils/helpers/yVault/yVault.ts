@@ -30,6 +30,7 @@ export function getOrCreatePriceHistory(vault: Asset, pricePerFullShare:BigInt, 
     transfer.pricePerShare = pricePerFullShare;
     transfer.timestamp = adjustedTimestamp;
     transfer.txnHash = txnHash;
+    transfer.txnTimestamp = timestamp;  //actual timestamp of transaction
 
     transfer.save();
   }

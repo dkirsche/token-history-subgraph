@@ -26,6 +26,8 @@ type PriceHistoryDaily @entity {
   txnHash: Bytes!
 
   timestamp: BigInt!
+
+  txnTimestamp: BigInt
 }
 
 type RewardHistoryDaily @entity {
@@ -52,6 +54,8 @@ type RewardHistoryDaily @entity {
   txnHash: Bytes!
 
   timestamp: BigInt!
+
+  txnTimestamp: BigInt 
 }
 
 type RewardOther @entity {
@@ -75,5 +79,5 @@ type RewardOther @entity {
 
   timestamp: BigInt!
 
-  txnTimestamp: BigInt 
+  txnTimestamp: BigInt
 }
