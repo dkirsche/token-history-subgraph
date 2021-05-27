@@ -31,5 +31,41 @@
   "curve_renAddress": "0x93054188d876f558f4a66B2EF1d97d16eDf0895B",
   "curve_renStartBlock": 10151385,
   "curve_ren_gaugeAddress": "0xB1F2cdeC61db658F091671F5f199635aEF202CAC",
-  "curve_ren_gaugeStartBlock": 10647928
+  "curve_ren_gaugeStartBlock": 10647928,
+
+  "yearn": {
+    "usdc": {
+      "address": "0x5f18C75AbDAe578b483E5F43f12a39cF75b973a9",
+      "startBlock": 11674456
+    },
+    "crvusdp": {
+      "address": "0xC4dAf3b5e2A9e93861c3FBDd25f1e943B8D87417",
+      "startBlock": 12298233
+    },
+    "susd": {
+      "address": "0xa5cA62D95D24A4a350983D5B8ac4EB8638887396",
+      "startBlock": 12064975
+    },
+    "crvybusd": {
+      "address": "0x8ee57c05741aA9DB947A744E713C15d4d19D8822",
+      "startBlock": 12245163
+    },
+    "crvmusd": {
+      "address": "0x8cc94ccd0f3841a468184aCA3Cc478D2148E1757",
+      "startBlock": 12293207
+    },
+    "crvfrax": {
+      "address": "0xB4AdA607B9d6b2c9Ee07A275e9616B84AC560139",
+      "startBlock": 12283723
+    },
+    "crvlusd": {
+      "address": "0x5fA5B62c8AF877CB37031e0a3B2f34A78e3C56A6",
+      "startBlock": 12283801
+    },
+    "usdt": {
+      "address": "0x7Da96a3891Add058AdA2E826306D812C638D87a7",
+      "startBlock": 12233959
+    }
+  }
+
 }
