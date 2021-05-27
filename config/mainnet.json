@@ -33,6 +33,76 @@
   "curve_ren_gaugeAddress": "0xB1F2cdeC61db658F091671F5f199635aEF202CAC",
   "curve_ren_gaugeStartBlock": 10647928,
 
+
+  "curve": {
+    "gusd": {
+      "address": "0xC5cfaDA84E902aD92DD40194f0883ad49639b023",
+      "startBlock": 11009833
+    },
+
+    "usdn": {
+      "address": "0xF98450B5602fa59CC66e1379DFfB6FDDc724CfC4",
+      "startBlock": 11010522
+    },
+
+    "frax": {
+      "address": "0x72e158d38dbd50a483501c24f792bdaaa3e7d55c",
+      "startBlock": 12282687
+    },
+
+    "busdv2": {
+      "address": "0xd4b22fedca85e684919955061fdf353b9d38389b",
+      "startBlock": 12240402
+    },
+
+    "eurs": {
+      "address": "0x90Bb609649E0451E5aD952683D64BD2d1f245840",
+      "startBlock": 11466964
+    },
+
+    "busd": {
+      "address": "0x69Fb7c45726cfE2baDeE8317005d3F94bE838840",
+      "startBlock": 10647916
+    },
+
+    "pax": {
+      "address": "0x64E3C23bfc40722d3B649844055F1D51c1ac041d",
+      "startBlock": 10647922
+    },
+
+    "dusd": {
+      "address": "0x61E10659fe3aa93d036d099405224E4Ac24996d0",
+      "startBlock": 11187279
+    },
+
+    "husd": {
+      "address": "0x2db0E83599a91b508Ac268a6197b8B14F5e72840",
+      "startBlock": 11010077
+    },
+
+    "usdt": {
+      "address": "0xBC89cd85491d81C6AD2954E6d0362Ee29fCa8F53",
+      "startBlock": 10647902
+    },
+
+    "usdk": {
+      "address": "0xC2b1DF84112619D190193E48148000e3990Bf627",
+      "startBlock": 11010308
+    },
+
+    "musd": {
+      "address": "0x5f626c30EC1215f4EdCc9982265E8b1F411D1352",
+      "startBlock": 11055948
+    },
+
+    "tusd": {
+      "address": "0x359FD5d6417aE3D8D6497d9B2e7A890798262BA4",
+      "startBlock": 12010264
+    }
+  },
+
+
+
   "yearn": {
     "usdc": {
       "address": "0x5f18C75AbDAe578b483E5F43f12a39cF75b973a9",
