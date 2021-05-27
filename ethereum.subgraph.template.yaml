@@ -2,6 +2,7 @@ specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
+  # Yearn Vaults: https://yearn.finance/vaults/
   - kind: ethereum/contract
     name: yearn_yCurve
     network: {{network}}

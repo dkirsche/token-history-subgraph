@@ -48,7 +48,9 @@ npx hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/QXyXlwAgmRhb84fAp_9
 
 This will create a local blockchain accessible from http://127.0.0.1:8545/.
 
-2. Start a Graph node. Easiest way is to use scaffold-eth with the following changes:
+2a. Follow instructions to get local graph node running: https://thegraph.com/docs/quick-start#3.-initialize-a-new-subgraph
+
+2b (alternative) Start a Graph node. Easiest way is to use scaffold-eth with the following changes:
 
 ```
   # In docker/graph-node/docker-compose.yml
@@ -57,4 +59,6 @@ This will create a local blockchain accessible from http://127.0.0.1:8545/.
   yarn graph-run-node
 ```
 
-3. Run `yarn create-local && yarn deploy-local` create and deploy the subgraph.
+3. `NETWORK=mainnet BLOCKCHAIN=ethereum yarn prepare:subgraph`
+
+4. Run `yarn create-local && yarn deploy-local` create and deploy the subgraph.
