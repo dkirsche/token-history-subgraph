@@ -96,6 +96,8 @@ dataSources:
       abis:
         - name: AaveRewards
           file: ./abis/AaveRewards.json
+        - name: AaveAToken
+          file: ./abis/AaveAToken.json
       eventHandlers:
         - event: AssetIndexUpdated(indexed address,uint256)
           handler: handleRewardsEvents
