@@ -36,35 +36,35 @@
   "yearn": {
     "usdc": {
       "address": "0x5f18C75AbDAe578b483E5F43f12a39cF75b973a9",
-      "start_block": 11674456
+      "startBlock": 11674456
     },
     "crvusdp": {
       "address": "0xC4dAf3b5e2A9e93861c3FBDd25f1e943B8D87417",
-      "start_block": 12298233
+      "startBlock": 12298233
     },
     "susd": {
       "address": "0xa5cA62D95D24A4a350983D5B8ac4EB8638887396",
-      "start_block": 12064975
+      "startBlock": 12064975
     },
     "crvybusd": {
       "address": "0x8ee57c05741aA9DB947A744E713C15d4d19D8822",
-      "start_block": 12245163
+      "startBlock": 12245163
     },
     "crvmusd": {
       "address": "0x8cc94ccd0f3841a468184aCA3Cc478D2148E1757",
-      "start_block": 12293207
+      "startBlock": 12293207
     },
     "crvfrax": {
       "address": "0xB4AdA607B9d6b2c9Ee07A275e9616B84AC560139",
-      "start_block": 12283723
+      "startBlock": 12283723
     },
     "crvlusd": {
       "address": "0x5fA5B62c8AF877CB37031e0a3B2f34A78e3C56A6",
-      "start_block": 12283801
+      "startBlock": 12283801
     },
     "usdt": {
       "address": "0x7Da96a3891Add058AdA2E826306D812C638D87a7",
-      "start_block": 12233959
+      "startBlock": 12233959
     }
   }
 
