@@ -32,6 +32,10 @@
   "curve_renStartBlock": 10151385,
   "curve_ren_gaugeAddress": "0xB1F2cdeC61db658F091671F5f199635aEF202CAC",
   "curve_ren_gaugeStartBlock": 10647928,
+  "aave_poolAddress": "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9",
+  "aave_poolStartBlock": 11858281,
+  "aave_rewardsAddress": "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5",
+  "aave_rewardsStartBlock": 12251569,
 
   "yearn": {
     "usdc": {

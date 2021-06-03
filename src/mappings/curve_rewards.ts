@@ -87,6 +87,7 @@ function createRewardHistory(event: UpdateLiquidityLimit, vaultID: Address, rewa
   dailyReward.rewardTokenID = gaugeContract.crv_token().toHexString()
   dailyReward.timestamp = adjustedTimestamp;
   dailyReward.txnHash = txnHash;
+  dailyReward.txnTimestamp = timestamp;  //actual timestamp of transaction
 
   dailyReward.save();
 

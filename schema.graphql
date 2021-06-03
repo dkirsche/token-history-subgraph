@@ -26,6 +26,8 @@ type PriceHistoryDaily @entity {
   txnHash: Bytes!
 
   timestamp: BigInt!
+
+  txnTimestamp: BigInt
 }
 
 type RewardHistoryDaily @entity {
@@ -52,6 +54,8 @@ type RewardHistoryDaily @entity {
   txnHash: Bytes!
 
   timestamp: BigInt!
+
+  txnTimestamp: BigInt 
 }
 
 type RewardOther @entity {
@@ -67,13 +71,13 @@ type RewardOther @entity {
 
   totalSupply: BigInt!
 
-  rewardContract: String!
-
-  reward: BigInt! "daily reward (inflationPerSecond * 86400 * relative_weight)"
+  reward: BigInt
 
   rewardTokenID: String!
 
   txnHash: Bytes!
 
   timestamp: BigInt!
+
+  txnTimestamp: BigInt
 }

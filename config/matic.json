@@ -3,5 +3,9 @@
   "curve_aave_maticAddress": "0x445FE580eF8d70FF569aB36e80c647af338db351",
   "curve_aave_maticStartBlock": 13479484,
   "curve_aave_gauge_maticAddress": "0xe381C25de995d62b453aF8B931aAc84fcCaa7A62",
-  "curve_aave_gauge_maticStartBlock": 13483661
+  "curve_aave_gauge_maticStartBlock": 13483661,
+  "aave_poolAddress": "0x8dFf5E27EA6b7AC08EbFdf9eB090F32ee9a30fcf",
+  "aave_poolStartBlock": 12690010,
+  "aave_rewardsAddress": "0x357D51124f59836DeD84c8a1730D72B749d8BC23",
+  "aave_rewardsStartBlock": 12486774
 }

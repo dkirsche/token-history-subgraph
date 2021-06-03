@@ -1,4 +1,4 @@
-import { Asset, PriceHistoryDaily } from "../../../../generated/schema";
+import { Asset, PriceHistoryDaily, RewardOther } from "../../../../generated/schema";
 import { Address, log } from "@graphprotocol/graph-ts";
 import { BigDecimal, BigInt, Address, Bytes } from "@graphprotocol/graph-ts";
 
@@ -30,10 +30,50 @@ export function getOrCreatePriceHistory(vault: Asset, pricePerFullShare:BigInt, 
     transfer.pricePerShare = pricePerFullShare;
     transfer.timestamp = adjustedTimestamp;
     transfer.txnHash = txnHash;
+    transfer.txnTimestamp = timestamp;  //actual timestamp of transaction
 
     transfer.save();
   }
   return transfer as PriceHistoryDaily;
+}
+export function createOtherRewardHistory(
+  timestamp: BigInt,
+  txnHash: Bytes,
+  rewardAddress: Address, //address of contract that is calculating the reward
+  assetAddress: Address, //asset or pool that is receiving the reward
+  rewards: BigInt,
+  totalSupply: BigInt,
+  rewardToken: Address
+): RewardOther {
+
+
+  let adjustedTimestamp = roundToDay(timestamp)
+  let dailyID = adjustedTimestamp.toString() + assetAddress.toHexString();
+  let additionalReward = RewardOther.load(dailyID);
+  if (additionalReward != null) {
+    log.info('Duplicate_RewardOther - txnHash:{} ,timeStamp:{}', [
+      txnHash.toHexString(),
+      adjustedTimestamp.toString(),
+    ])
+    return additionalReward as RewardOther;
+  }
+  log.info('New_RewardOther - txnHash:{} ,timeStamp:{}', [
+    txnHash.toHexString(),
+    timestamp.toString(),
+  ])
+  additionalReward = new RewardOther(dailyID);
+  additionalReward.asset = assetAddress.toHexString();
+  additionalReward.gaugeId = rewardAddress;
+  additionalReward.rewardIntegral = rewards
+  additionalReward.totalSupply = totalSupply
+  additionalReward.rewardTokenID = rewardToken.toHexString()
+  additionalReward.timestamp = adjustedTimestamp; //adjusted timestamp, unique by the day
+  additionalReward.txnHash = txnHash;
+  additionalReward.txnTimestamp = timestamp;  //actual timestamp of transaction
+
+  additionalReward.save();
+
+  return additionalReward as RewardOther;
 }
 
 export function roundToDay(timeStamp:BigInt): BigInt {
