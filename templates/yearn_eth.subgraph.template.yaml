@@ -1,0 +1,251 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  # Yearn Vaults: https://yearn.finance/vaults/
+  - kind: ethereum/contract
+    name: yearn_yCurve
+    network: {{network}}
+    source:
+      address: "{{yearn_yCurveAddress}}"
+      abi: V1Contract
+      startBlock: {{yearn_yCurveStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+  - kind: ethereum/contract
+    name: yearn_DAI
+    network: {{network}}
+    source:
+      address: "{{yearn_DAIAddress}}"
+      abi: V1Contract
+      startBlock: {{yearn_DAIStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+
+  - kind: ethereum/contract
+    name: yearn_usdc
+    network: {{network}}
+    source:
+      address: "{{yearn.usdc.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.usdc.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+
+  - kind: ethereum/contract
+    name: yearn_crvusdp
+    network: {{network}}
+    source:
+      address: "{{yearn.crvusdp.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.crvusdp.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+
+  - kind: ethereum/contract
+    name: yearn_susd
+    network: {{network}}
+    source:
+      address: "{{yearn.susd.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.susd.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+
+  - kind: ethereum/contract
+    name: yearn_crvybusd
+    network: {{network}}
+    source:
+      address: "{{yearn.crvybusd.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.crvybusd.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+  - kind: ethereum/contract
+    name: yearn_crvmusd
+    network: {{network}}
+    source:
+      address: "{{yearn.crvmusd.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.crvmusd.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+
+  - kind: ethereum/contract
+    name: yearn_crvfrax
+    network: {{network}}
+    source:
+      address: "{{yearn.crvfrax.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.crvfrax.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+
+  - kind: ethereum/contract
+    name: yearn_crvlusd
+    network: {{network}}
+    source:
+      address: "{{yearn.crvlusd.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.crvlusd.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
+
+
+  - kind: ethereum/contract
+    name: yearn_usdt
+    network: {{network}}
+    source:
+      address: "{{yearn.usdt.address}}"
+      abi: V1Contract
+      startBlock: {{yearn.usdt.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: V1Contract
+          file: ./abis/V1Contract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleYEarnTransfer
+      file: ./src/mappings/yVault.ts
