@@ -1,0 +1,360 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: curve_Y
+    network: {{network}}
+    source:
+      address: "{{curve_YAddress}}"
+      abi: CurveContract
+      startBlock: {{curve_YStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveContract
+          file: ./abis/CurveContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: RemoveLiquidity(indexed address,uint256[4],uint256[4],uint256)
+          handler: handleCurveTransfer
+        - event: AddLiquidity(indexed address,uint256[4],uint256[4],uint256,uint256)
+          handler: handleCurveTransfer
+      file: ./src/mappings/curve.ts
+  - kind: ethereum/contract
+    name: curve_y_gauge
+    network: {{network}}
+    source:
+      address: "{{curve_y_gaugeAddress}}"
+      abi: CurveAaveGaugeContract
+      startBlock: {{curve_y_gaugeStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveYGaugeUpdate
+      file: ./src/mappings/curve_rewards.ts
+  - kind: ethereum/contract
+    name: curve_aave
+    network: {{network}}
+    source:
+      address: "{{curve_aaveAddress}}"
+      abi: CurveAaveContract
+      startBlock: {{curve_aaveStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveAaveContract
+          file: ./abis/CurveAaveContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: RemoveLiquidity(indexed address,uint256[3],uint256[3],uint256)
+          handler: handleCurveAaveTransfer
+        - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
+          handler: handleCurveAaveTransfer
+      file: ./src/mappings/curve.ts
+
+  - kind: ethereum/contract
+    name: curve_aave_gauge
+    network: {{network}}
+    source:
+      address: "{{curve_aave_gaugeAddress}}"
+      abi: CurveAaveGaugeContract
+      startBlock: {{curve_aave_gaugeStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveAaveGaugeUpdate
+      file: ./src/mappings/curve_rewards.ts
+
+  - kind: ethereum/contract
+    name: curve_3pool
+    network: {{network}}
+    source:
+      address: "{{curve_3poolAddress}}"
+      abi: Curve3Pool
+      startBlock: {{curve_3poolStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: Curve3Pool
+          file: ./abis/Curve3Pool.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[3],uint256[3],uint256,uint256)
+          handler: handleCurve3PoolTransfer
+        - event: RemoveLiquidity(indexed address,uint256[3],uint256[3],uint256)
+          handler: handleCurve3PoolTransfer
+      file: ./src/mappings/curve.ts
+  - kind: ethereum/contract
+    name: curve_3pool_gauge
+    network: {{network}}
+    source:
+      address: "{{curve_3pool_gaugeAddress}}"
+      abi: CurveAaveGaugeContract
+      startBlock: {{curve_3pool_gaugeStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurve3PoolGaugeUpdate
+      file: ./src/mappings/curve_rewards.ts
+
+  - kind: ethereum/contract
+    name: curve_compound
+    network: {{network}}
+    source:
+      address: "{{curve_compoundAddress}}"
+      abi: CurveCompound
+      startBlock: {{curve_compoundStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveCompound
+          file: ./abis/CurveCompound.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleCurveCompoundTransfer
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleCurveCompoundTransfer
+      file: ./src/mappings/curve.ts
+  - kind: ethereum/contract
+    name: curve_compound_gauge
+    network: {{network}}
+    source:
+      address: "{{curve_compound_gaugeAddress}}"
+      abi: CurveAaveGaugeContract
+      startBlock: {{curve_compound_gaugeStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveCompoundGaugeUpdate
+      file: ./src/mappings/curve_rewards.ts
+
+  - kind: ethereum/contract
+    name: curve_usdp
+    network: {{network}}
+    source:
+      address: "{{curve_usdpAddress}}"
+      abi: CurveUSDP
+      startBlock: {{curve_usdpStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveUSDP
+          file: ./abis/CurveUSDP.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleCurveUSDPTransfer
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleCurveUSDPTransfer
+      file: ./src/mappings/curve.ts
+  - kind: ethereum/contract
+    name: curve_USDP_gauge
+    network: {{network}}
+    source:
+      address: "{{curve_USDP_gaugeAddress}}"
+      abi: CurveAaveGaugeContract
+      startBlock: {{curve_USDP_gaugeStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveUSDPGaugeUpdate
+      file: ./src/mappings/curve_rewards.ts
+
+  - kind: ethereum/contract
+    name: curve_susd
+    network: {{network}}
+    source:
+      address: "{{curve_susdAddress}}"
+      abi: CurveSUSD
+      startBlock: {{curve_susdStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveSUSD
+          file: ./abis/CurveSUSD.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[4],uint256[4],uint256,uint256)
+          handler: handleCurveSUSDTransfer
+        - event: RemoveLiquidity(indexed address,uint256[4],uint256[4],uint256)
+          handler: handleCurveSUSDTransfer
+      file: ./src/mappings/curve.ts
+  - kind: ethereum/contract
+    name: curve_susd_gauge
+    network: {{network}}
+    source:
+      address: "{{curve_susd_gaugeAddress}}"
+      abi: CurveAaveGaugeContract
+      startBlock: {{curve_susd_gaugeStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveSUSDGaugeUpdate
+      file: ./src/mappings/curve_rewards.ts
+
+  - kind: ethereum/contract
+    name: curve_ren
+    network: {{network}}
+    source:
+      address: "{{curve_renAddress}}"
+      abi: CurveRen
+      startBlock: {{curve_renStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - PriceHistoryDaily
+      abis:
+        - name: CurveRen
+          file: ./abis/CurveRen.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleCurveRenTransfer
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleCurveRenTransfer
+      file: ./src/mappings/curve.ts
+  - kind: ethereum/contract
+    name: curve_ren_gauge
+    network: {{network}}
+    source:
+      address: "{{curve_ren_gaugeAddress}}"
+      abi: CurveAaveGaugeContract
+      startBlock: {{curve_ren_gaugeStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Asset
+        - RewardHistoryDaily
+      abis:
+        - name: CurveAaveGaugeContract
+          file: ./abis/CurveAaveGaugeContract.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: CurveGaugeController
+          file: ./abis/CurveGaugeController.json
+      eventHandlers:
+        - event: UpdateLiquidityLimit(address,uint256,uint256,uint256,uint256)
+          handler: handleCurveRenGaugeUpdate
+      file: ./src/mappings/curve_rewards.ts
