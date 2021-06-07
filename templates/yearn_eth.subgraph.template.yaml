@@ -57,7 +57,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.usdc.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.usdc.startBlock}}
     mapping:
       kind: ethereum/events
@@ -67,13 +67,13 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
 
 
@@ -82,7 +82,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.crvusdp.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.crvusdp.startBlock}}
     mapping:
       kind: ethereum/events
@@ -92,13 +92,13 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
 
 
@@ -107,7 +107,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.susd.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.susd.startBlock}}
     mapping:
       kind: ethereum/events
@@ -117,13 +117,13 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
 
 
@@ -132,7 +132,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.crvybusd.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.crvybusd.startBlock}}
     mapping:
       kind: ethereum/events
@@ -142,13 +142,13 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
 
   - kind: ethereum/contract
@@ -156,7 +156,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.crvmusd.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.crvmusd.startBlock}}
     mapping:
       kind: ethereum/events
@@ -166,13 +166,13 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
 
 
@@ -181,7 +181,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.crvfrax.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.crvfrax.startBlock}}
     mapping:
       kind: ethereum/events
@@ -191,13 +191,13 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
 
 
@@ -206,7 +206,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.crvlusd.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.crvlusd.startBlock}}
     mapping:
       kind: ethereum/events
@@ -216,13 +216,13 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
 
 
@@ -231,7 +231,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{yearn.usdt.address}}"
-      abi: V1Contract
+      abi: yearnV2Contract
       startBlock: {{yearn.usdt.startBlock}}
     mapping:
       kind: ethereum/events
@@ -241,11 +241,11 @@ dataSources:
         - Asset
         - PriceHistoryDaily
       abis:
-        - name: V1Contract
-          file: ./abis/V1Contract.json
+        - name: yearnV2Contract
+          file: ./abis/yearnV2Contract.json
         - name: ERC20
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleYEarnTransfer
+          handler: handleYEarnV2Transfer
       file: ./src/mappings/yVault.ts
